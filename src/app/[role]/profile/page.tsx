@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import MainLayoutWrapper from "@/components/layout/MainLayoutWrapper";
 
 export default function ProfilePage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -49,147 +48,145 @@ export default function ProfilePage() {
   };
 
   return (
-    <MainLayoutWrapper role={currentRoleMatch as any} title="My Profile">
-      <div className="w-full max-w-[900px] mx-auto py-8 px-4 flex flex-col gap-6">
-        {/* Top Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row items-center md:justify-between gap-6">
-          <div className="flex items-center gap-6">
-            <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl font-bold uppercase shrink-0">
-              {user.fullName.charAt(0)}
-            </div>
-            <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
-              <h1 className="text-2xl font-bold text-gray-900">
-                {user.fullName}
-              </h1>
-              <div className="flex items-center gap-3">
-                <span className="px-2.5 py-1 text-xs font-semibold bg-blue-50 text-blue-700 rounded-md uppercase tracking-wide">
-                  {user.role}
-                </span>
-                <span className="text-gray-500 text-sm">{user.email}</span>
-              </div>
+    <div className="w-full max-w-[900px] mx-auto py-8 px-4 flex flex-col gap-6">
+      {/* Top Section */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row items-center md:justify-between gap-6">
+        <div className="flex items-center gap-6">
+          <div className="w-20 h-20 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl font-bold uppercase shrink-0">
+            {user.fullName.charAt(0)}
+          </div>
+          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
+            <h1 className="text-2xl font-bold text-gray-900">
+              {user.fullName}
+            </h1>
+            <div className="flex items-center gap-3">
+              <span className="px-2.5 py-1 text-xs font-semibold bg-blue-50 text-blue-700 rounded-md uppercase tracking-wide">
+                {user.role}
+              </span>
+              <span className="text-gray-500 text-sm">{user.email}</span>
             </div>
           </div>
-          <button
-            onClick={() => {
-              setEditForm(user);
-              setIsEditModalOpen(true);
-            }}
-            className="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
-          >
-            Edit Profile
-          </button>
         </div>
+        <button
+          onClick={() => {
+            setEditForm(user);
+            setIsEditModalOpen(true);
+          }}
+          className="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+        >
+          Edit Profile
+        </button>
+      </div>
 
-        {/* Middle Section - 2 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left: Personal Info */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
-              Personal Info
-            </h2>
-            <div className="flex flex-col gap-4">
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">
-                  Full Name
-                </p>
-                <p className="text-gray-900">{user.fullName}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">Email</p>
-                <p className="text-gray-900">{user.email}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">Phone</p>
-                <p className="text-gray-900">{user.phone}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">
-                  Address
-                </p>
-                <p className="text-gray-900">
-                  {user.address || "Not provided"}
-                </p>
-              </div>
+      {/* Middle Section - 2 Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Left: Personal Info */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
+            Personal Info
+          </h2>
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">
+                Full Name
+              </p>
+              <p className="text-gray-900">{user.fullName}</p>
             </div>
-          </div>
-
-          {/* Right: Account Info */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
-              Account Info
-            </h2>
-            <div className="flex flex-col gap-4">
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">Role</p>
-                <p className="text-gray-900">{user.role}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">
-                  Company
-                </p>
-                <p className="text-gray-900">{user.company}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">
-                  Join Date
-                </p>
-                <p className="text-gray-900">{user.joinDate}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-1">
-                  Last Login
-                </p>
-                <p className="text-gray-900">{user.lastLogin}</p>
-              </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">Email</p>
+              <p className="text-gray-900">{user.email}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">Phone</p>
+              <p className="text-gray-900">{user.phone}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">
+                Address
+              </p>
+              <p className="text-gray-900">
+                {user.address || "Not provided"}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left: Activities */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
-              Activity Summary
-            </h2>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-900 font-medium">Logged in</span>
-                <span className="text-gray-500">Today, 09:41 AM</span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-900 font-medium">
-                  Updated task status
-                </span>
-                <span className="text-gray-500">Yesterday, 04:30 PM</span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-900 font-medium">
-                  Uploaded a file
-                </span>
-                <span className="text-gray-500">Mar 28, 11:20 AM</span>
-              </div>
+        {/* Right: Account Info */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
+            Account Info
+          </h2>
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">Role</p>
+              <p className="text-gray-900">{user.role}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">
+                Company
+              </p>
+              <p className="text-gray-900">{user.company}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">
+                Join Date
+              </p>
+              <p className="text-gray-900">{user.joinDate}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-1">
+                Last Login
+              </p>
+              <p className="text-gray-900">{user.lastLogin}</p>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Right: Security & Password */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
-              Security
-            </h2>
-            <div className="flex flex-col gap-4">
-              <div>
-                <p className="text-sm text-gray-500 font-medium mb-2">
-                  Password Management
-                </p>
-                <p className="text-sm text-gray-600 mb-4">
-                  You should change your password regularly to prevent
-                  unauthorized access to your account.
-                </p>
-                <button className="px-4 py-2 border border-gray-200 hover:border-blue-500 hover:text-blue-600 text-gray-700 text-sm font-medium rounded-lg transition-colors">
-                  Change Password
-                </button>
-              </div>
+      {/* Bottom Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Left: Activities */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
+            Activity Summary
+          </h2>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-900 font-medium">Logged in</span>
+              <span className="text-gray-500">Today, 09:41 AM</span>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-900 font-medium">
+                Updated task status
+              </span>
+              <span className="text-gray-500">Yesterday, 04:30 PM</span>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-900 font-medium">
+                Uploaded a file
+              </span>
+              <span className="text-gray-500">Mar 28, 11:20 AM</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Security & Password */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-5 pb-3 border-b border-gray-100">
+            Security
+          </h2>
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="text-sm text-gray-500 font-medium mb-2">
+                Password Management
+              </p>
+              <p className="text-sm text-gray-600 mb-4">
+                You should change your password regularly to prevent
+                unauthorized access to your account.
+              </p>
+              <button className="px-4 py-2 border border-gray-200 hover:border-blue-500 hover:text-blue-600 text-gray-700 text-sm font-medium rounded-lg transition-colors">
+                Change Password
+              </button>
             </div>
           </div>
         </div>
@@ -289,6 +286,6 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
-    </MainLayoutWrapper>
+    </div>
   );
 }

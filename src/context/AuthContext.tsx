@@ -41,6 +41,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(userData);
     setRole(role);
     localStorage.setItem('auth', JSON.stringify({ user: userData, role }));
+    
+    // Set cookie for middleware redirection (expires in 7 days)
+    if (typeof document !== 'undefined') {
+      document.cookie = `session-role=${role}; path=/; max-age=${7 * 24 * 60 * 60}`;
+    }
 
     // Redirect based on role
     if (role === 'super-admin') {
@@ -58,6 +63,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     setRole(null);
     localStorage.removeItem('auth');
+    
+    // Clear session-role cookie
+    if (typeof document !== 'undefined') {
+      document.cookie = 'session-role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+    
     router.push('/login');
   };
 

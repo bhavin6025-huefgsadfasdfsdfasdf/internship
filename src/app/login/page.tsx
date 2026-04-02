@@ -67,6 +67,15 @@ export default function MainLoginPage() {
           ))}
         </div>
 
+        <div className="text-center space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Don't have an account yet?{" "}
+            <Link href="/signup" className="text-primary font-semibold hover:underline">
+              Create one now
+            </Link>
+          </p>
+        </div>
+
         {/* Footer */}
         <Card className="max-w-xl mx-auto border-dashed">
           <div className="flex items-center gap-4">

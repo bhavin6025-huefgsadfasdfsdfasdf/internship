@@ -11,12 +11,24 @@ export default function RootPage() {
   useEffect(() => {
     if (!isLoading) {
       if (!user) {
-        router.push('/login');
+        router.replace('/login');
       } else {
-        if (role === 'employee') router.push('/employee');
-        else if (role === 'manager') router.push('/manager/dashboard');
-        else if (role === 'admin') router.push('/admin/dashboard');
-        else if (role === 'super-admin') router.push('/super-admin/dashboard');
+        switch (role) {
+          case 'super-admin':
+            router.replace('/super-admin/dashboard');
+            break;
+          case 'admin':
+            router.replace('/admin/dashboard');
+            break;
+          case 'manager':
+            router.replace('/manager/dashboard');
+            break;
+          case 'employee':
+            router.replace('/employee/dashboard');
+            break;
+          default:
+            router.replace('/login');
+        }
       }
     }
   }, [user, role, isLoading, router]);
