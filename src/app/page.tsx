@@ -9,25 +9,17 @@ export default function RootPage() {
   const { user, role, isLoading } = useAuth();
 
   useEffect(() => {
+    // Middleware now handles the primary redirect from '/'
+    // This client-side check remains as a fallback for initial cookie-less states
     if (!isLoading) {
       if (!user) {
         router.replace('/login');
-      } else {
-        switch (role) {
-          case 'super-admin':
-            router.replace('/super-admin/dashboard');
-            break;
-          case 'admin':
-            router.replace('/admin/dashboard');
-            break;
-          case 'manager':
-            router.replace('/manager/dashboard');
-            break;
-          case 'employee':
-            router.replace('/employee/dashboard');
-            break;
-          default:
-            router.replace('/login');
+      } else if (role) {
+        // Redirection based on role
+        const path = role === 'employee' ? '/employee' : `/${role}/dashboard`;
+        // Guard against double navigation
+        if (window.location.pathname === '/') {
+          router.replace(path);
         }
       }
     }
