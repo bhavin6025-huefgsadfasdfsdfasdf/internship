@@ -8,13 +8,14 @@ import {
   ADMIN_NAV_ITEMS, 
   MANAGER_NAV_ITEMS, 
   EMPLOYEE_NAV_ITEMS, 
+  SUPER_ADMIN_NAV_ITEMS,
   ADMIN_SUPPORT_ITEMS,
   COMMON_SUPPORT_ITEMS 
 } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 interface SidebarProps {
-  role?: "admin" | "manager" | "employee";
+  role?: "admin" | "manager" | "employee" | "super-admin";
 }
 
 export default function Sidebar({ role = "admin" }: SidebarProps) {
@@ -24,25 +25,25 @@ export default function Sidebar({ role = "admin" }: SidebarProps) {
   const mainItems = 
     role === "admin" ? ADMIN_NAV_ITEMS : 
     role === "manager" ? MANAGER_NAV_ITEMS : 
+    role === "super-admin" ? SUPER_ADMIN_NAV_ITEMS :
     EMPLOYEE_NAV_ITEMS;
 
   const supportItems = 
-    role === "admin" ? ADMIN_SUPPORT_ITEMS : 
+    role === "admin" || role === "super-admin" ? ADMIN_SUPPORT_ITEMS : 
     COMMON_SUPPORT_ITEMS;
 
+  // Faster active route detection
   const isRouteActive = (itemPath: string) => {
-    if (pathname === itemPath) return true;
-    if (itemPath !== "/" && pathname.startsWith(itemPath)) return true;
-    return false;
+    return pathname === itemPath || (itemPath !== "/" && pathname.startsWith(itemPath));
   };
 
-  const roleLabel = role.toUpperCase().substring(0, 3);
+  const roleLabel = role.charAt(0).toUpperCase() + role.slice(0, 3).substring(1);
 
   return (
     <aside
       className={cn(
-        "h-screen sticky top-0 flex flex-col bg-white border-r border-border shrink-0 transition-all duration-300",
-        collapsed ? "w-[80px]" : "w-[240px]"
+        "h-screen sticky top-0 flex flex-col bg-white/70 backdrop-blur-xl border-r border-border/40 shrink-0 transition-all duration-500 ease-[0.33, 1, 0.68, 1] z-50 shadow-[4px_0_24px_-10px_rgba(0,0,0,0.05)]",
+        collapsed ? "w-[88px]" : "w-[260px]"
       )}
     >
       <div className="flex flex-col h-full overflow-hidden">
@@ -77,7 +78,7 @@ export default function Sidebar({ role = "admin" }: SidebarProps) {
                 Main Menu
               </span>
             )}
-            {mainItems.map((item) => {
+            {mainItems.map((item: any) => {
               const isActive = isRouteActive(item.path);
               return (
                 <Link
@@ -118,7 +119,7 @@ export default function Sidebar({ role = "admin" }: SidebarProps) {
                 Support
               </span>
             )}
-            {supportItems.map((item) => {
+            {supportItems.map((item: any) => {
               const isActive = isRouteActive(item.path);
               return (
                 <Link

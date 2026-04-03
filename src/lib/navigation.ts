@@ -11,15 +11,29 @@ import {
   Users,
   Briefcase,
   Layers,
+  Shield,
+  FileText,
+  Activity,
+  Key,
 } from 'lucide-react';
 
 export const ADMIN_NAV_ITEMS = [
   { name: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },
+  { name: 'User Management', icon: Users, path: '/admin/users' },
   { name: 'My Tasks', icon: CheckSquare, path: '/admin/tasks' },
   { name: 'Timesheet', icon: Clock, path: '/admin/timesheets' },
   { name: 'Discussions', icon: MessageSquare, path: '/admin/discussions' },
   { name: 'My Files', icon: FileUp, path: '/admin/files' },
   { name: 'AI Helper', icon: Bot, path: '/admin/ai-helper' },
+];
+
+export const SUPER_ADMIN_NAV_ITEMS = [
+  { name: 'Global Control', icon: Shield, path: '/super-admin/dashboard' },
+  { name: 'Company Management', icon: Briefcase, path: '/super-admin/company-management' },
+  { name: 'Audit Logs', icon: FileText, path: '/super-admin/audit-logs' },
+  { name: 'System Health', icon: Activity, path: '/super-admin/system-health' },
+  { name: 'API Keys', icon: Key, path: '/super-admin/api-keys' },
+  { name: 'Settings', icon: Settings, path: '/super-admin/settings' },
 ];
 
 export const MANAGER_NAV_ITEMS = [

@@ -1,5 +1,4 @@
+"use client";
+import React from "react";
 import PlaceholderPage from "@/components/ui/PlaceholderPage";
-
-export default function DiscussionsPage() {
-  return <PlaceholderPage title="Team Discussions" description="Collaborate with your team in real-time. We're building a powerful messaging and discussion platform for Noteflow." />;
-}
+export default function AdminDiscussionsPage() { return <PlaceholderPage title="Enterprise Discussions" />; }

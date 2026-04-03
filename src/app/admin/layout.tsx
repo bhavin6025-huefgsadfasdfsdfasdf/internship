@@ -3,13 +3,13 @@
 import React from "react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 
-export default function ManagerLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <DashboardLayout role="manager">
+    <DashboardLayout role="admin">
       {children}
     </DashboardLayout>
   );

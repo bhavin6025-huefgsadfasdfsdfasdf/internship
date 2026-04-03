@@ -55,7 +55,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } else if (role === 'manager') {
       router.push('/manager/dashboard');
     } else if (role === 'employee') {
-      router.push('/employee');
+      router.push('/employee/dashboard');
     }
   };
 

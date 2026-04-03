@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
-  role?: "admin" | "manager" | "employee";
+  role?: "admin" | "manager" | "employee" | "super-admin";
   userName?: string;
 }
 
@@ -29,22 +29,29 @@ export default function Navbar({ role = "admin", userName = "Enterprise User" }:
   const roleLabel = role.charAt(0).toUpperCase() + role.slice(1);
 
   return (
-    <header className="h-16 sticky top-0 z-40 bg-white border-b border-border px-6 flex items-center justify-between shrink-0">
+    <header className="h-[64px] sticky top-0 z-40 bg-white/50 backdrop-blur-xl border-b border-border/40 px-8 flex items-center justify-between shrink-0 shadow-[0_1px_16px_-8px_rgba(0,0,0,0.03)] font-sans">
       {/* Left */}
-      <div className="flex items-center gap-6 flex-1">
-        <div>
-          <h1 className="text-lg font-semibold text-foreground">
+      <div className="flex items-center gap-10 flex-1">
+        <div className="flex flex-col">
+          <h1 className="text-[17px] font-bold tracking-tight text-foreground/90 antialiased">
             {getPageTitle()}
           </h1>
+          <div className="flex items-center gap-1.5 -mt-0.5">
+            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+            <span className="text-[9px] font-bold text-muted-foreground/60 uppercase tracking-widest leading-none">System Operational</span>
+          </div>
         </div>
 
-        <div className="relative max-w-sm w-full hidden lg:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full h-10 bg-background border border-border pl-10 pr-4 rounded-lg text-sm placeholder:text-muted-foreground/50 focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-colors"
-          />
+        <div className="relative max-w-sm w-full hidden xl:block group">
+          <div className="absolute inset-0 bg-primary/5 rounded-xl blur-lg opacity-0 group-focus-within:opacity-100 transition-all duration-700" />
+          <div className="relative">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/40 w-3.5 h-3.5 transition-colors group-focus-within:text-primary" />
+            <input
+              type="text"
+              placeholder="Search secure terminal..."
+              className="w-full h-10 bg-secondary/30 border border-border/10 pl-11 pr-4 rounded-xl text-[13px] placeholder:text-muted-foreground/30 focus:outline-hidden focus:ring-0 focus:border-primary/30 transition-all duration-300"
+            />
+          </div>
         </div>
       </div>
 
